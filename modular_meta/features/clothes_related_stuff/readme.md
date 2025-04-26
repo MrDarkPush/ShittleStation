@@ -7,8 +7,7 @@
 
 ### TG Proc/File Changes:
 
-- code/game/objects/items.dm
-- code/game/objects/items_reskin.dm
+- N/A
 
 ### TGUI Files:
 
