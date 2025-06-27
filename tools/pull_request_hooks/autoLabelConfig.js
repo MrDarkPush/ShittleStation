@@ -73,6 +73,9 @@ export const title_labels = {
       "[ТМ]",
     ],
   },
+  "Соединение с Апстримом": {
+    keywords: ["[Апстрим]", "[Upstream]"],
+  },
 };
 
 // Changelog Labels
