@@ -9,12 +9,12 @@
 [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 [![massmetagit](.github/images/badges/massmeta-github.png)](https://youtu.be/rAaBNT-7oS4?si=YiR8JtsMs7e1VApV)
 ![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
-[![badGe](https://forthebadge.com/images/badges/powered-by-coffee.svg)]
-[![badge](https://forthebadge.com/images/featured/featured-oooo-kill-em.svg)]
-[![BADge](https://forthebadge.com/images/badges/approved-by-my-mom.svg)]
-[![badGE](https://forthebadge.com/images/badges/it-works-dont-ask-me.svg)]
-[![Blyatbadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)]
-[![Goodge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]
+![badGe](https://forthebadge.com/images/badges/powered-by-coffee.svg)
+![BADge](https://forthebadge.com/images/badges/approved-by-my-mom.svg)
+![badGE](https://forthebadge.com/images/badges/it-works-dont-ask-me.svg)
+![Blyatbadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)
+![Goodge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
+![endingbadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)
 
 | Website                 | Link                                                                            |
 | ----------------------- | ------------------------------------------------------------------------------- |
@@ -75,5 +75,3 @@ The TGS DMAPI is licensed as a subproject under the MIT license.
 See the footer of [code/\_\_DEFINES/tgs.dm](./code/__DEFINES/tgs.dm) and [code/modules/tgs/LICENSE](./code/modules/tgs/LICENSE) for the MIT license.
 
 All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
-
-[![endingbadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)]
