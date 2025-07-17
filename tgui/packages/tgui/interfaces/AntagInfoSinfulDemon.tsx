@@ -19,7 +19,7 @@ type Info = {
   objectives: Objective[];
 };
 
-export const AntagInfoDemon = (props) => {
+export const AntagInfoSinfulDemon = (props) => {
   const { data } = useBackend<Info>();
   const { fluff, objectives, explain_attack } = data;
   return (
