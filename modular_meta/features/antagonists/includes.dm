@@ -1,4 +1,3 @@
-#include "world.dm"
 #include "bloodsuckers\rulesets.dm"
 #include "bloodsuckers\code\job_edits.dm"
 #include "bloodsuckers\code\assets\bloodsucker_assets.dm"

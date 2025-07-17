@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 	//MASSMETA EDIT BEGIN (clown_traitor_sound)
 	// Add funny clown traitor sound
-	if(is_clown_job(owner.assigned_role) && job_rank == ROLE_TRAITOR)
+	if(is_clown_job(owner.assigned_role) && pref_flag == ROLE_TRAITOR)
 		stinger_sound = 'modular_meta/features/clown_traitor_sound/tatoralert_clown.ogg'
 	//MASSMETA EDIT END
 

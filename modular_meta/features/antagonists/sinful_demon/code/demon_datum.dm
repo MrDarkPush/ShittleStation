@@ -10,9 +10,10 @@
 	roundend_category = "demons of sin"
 	antagpanel_category = "Demon"
 	antag_hud_name = "demon"
-	job_rank = ROLE_SINFULDEMON
+	pref_flag = ROLE_SINFULDEMON
 	show_to_ghosts = TRUE
 	hud_icon = 'modular_meta/features/antagonists/icons/sinful_demon/demon_icons.dmi'
+	ui_name = "AntagInfoSinfulDemon"
 	//S/The sin a specific demon is assigned to. Defines what objectives and powers they'll receive.
 	var/demonsin
 	//A/The list of choosable sins for demons. One will be assigned to a demon when spawned naturally.
@@ -115,7 +116,6 @@
 
 /datum/antagonist/sinfuldemon/on_gain()
 	forge_objectives()
-	owner.special_role = "sinfuldemon"
 	owner.current.faction += "hell"
 	for(var/all_traits in sinfuldemon_traits) //M/adds demon traits
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
@@ -203,7 +203,6 @@
 	return ..()
 
 /datum/antagonist/sinfuldemon/on_removal()
-	owner.special_role = null
 	owner.current.faction -= "hell"
 	for(var/all_status_traits in owner.current._status_traits) //ETA/removes demon traits
 		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
