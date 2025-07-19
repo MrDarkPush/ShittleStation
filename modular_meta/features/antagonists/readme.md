@@ -1,3 +1,3 @@
-## Module ID: ANTAGONISTS
+Кровососы были взяты с Фульпов: https://github.com/fulpstation/fulpstation
 
-- Check bloodsuckers/readme.md
+https://github.com/fulpstation/fulpstation/tree/master/fulp_modules/features/antagonists/bloodsuckers

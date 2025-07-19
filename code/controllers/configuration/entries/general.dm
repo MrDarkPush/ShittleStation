@@ -121,6 +121,10 @@
 /// log emotes
 /datum/config_entry/flag/log_emote
 
+/// log ghost polling
+/datum/config_entry/flag/log_ghost_poll
+	default = TRUE
+
 /// log economy actions
 /datum/config_entry/flag/log_econ
 
@@ -318,7 +322,7 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "http://tgstation13.org/wiki"
+	default = "https://wiki.tgstation13.org"
 
 /datum/config_entry/string/forumurl
 	default = "http://tgstation13.org/phpBB/index.php"
@@ -451,12 +455,6 @@
 	min_val = 0
 
 /datum/config_entry/flag/irc_first_connection_alert // do we notify the irc channel when somebody is connecting for the first time?
-
-//MASSMETA EDIT ADDITION BEGIN (discord verification) - FORCED DISCORD VERIFICATION
-/datum/config_entry/number/force_verification
-	default = null
-	min_val = 0
-//MASSMETA EDIT ADDITION END
 
 /datum/config_entry/string/ipintel_base
 	default = "check.getipintel.net"
@@ -636,12 +634,6 @@
 	default = -1
 	min_val = 0
 
-/datum/config_entry/string/default_view
-	default = "15x15"
-
-/datum/config_entry/string/default_view_square
-	default = "15x15"
-
 /datum/config_entry/flag/log_pictures
 
 /datum/config_entry/flag/picture_logging_camera
@@ -788,3 +780,13 @@
  */
 /datum/config_entry/number/tgui_max_chunk_count
 	default = 32
+
+// If set, enables the "Link forum account" OOC verb
+/datum/config_entry/string/forum_link_uri
+
+//MASSMETA EDIT (вебхуки)
+/datum/config_entry/string/round_announce_webhook_url
+	default = ""
+
+/datum/config_entry/flag/generate_assets_in_init
+	default = FALSE

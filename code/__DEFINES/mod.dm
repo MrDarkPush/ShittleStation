@@ -4,8 +4,13 @@
 /// The default cell drain of a modsuit. The standard modsuit active power usage drains this much energy per modsuit second.
 #define DEFAULT_CHARGE_DRAIN (0.005 * STANDARD_CELL_CHARGE) // A standard cell lasts 200 seconds with this on active power usage, while a high power one lasts 2,000 seconds.
 
-/// Default time for a part to seal
-#define MOD_ACTIVATION_STEP_TIME (0.5 SECONDS) //MASSMETA EDIT CHANGE - ORIGINAL: #define MOD_ACTIVATION_STEP_TIME (2 SECONDS)
+/// Default time for a part of the suit to seal.
+//MASSMETA EDIT BEGIN ()
+//#define MOD_ACTIVATION_STEP_TIME (2 SECONDS)
+
+// Reduce time for modsuit deployment
+#define MOD_ACTIVATION_STEP_TIME (0.5 SECONDS)
+//MASSMETA EDIT END
 
 /// Passive module, just acts when put in naturally.
 #define MODULE_PASSIVE 0
@@ -57,9 +62,5 @@
 
 /// Global list of all /datum/mod_theme
 GLOBAL_LIST_INIT(mod_themes, setup_mod_themes())
-/// Global cache of mod skins to masks per different configuration of pulled out parts.
-GLOBAL_LIST_EMPTY(mod_masks)
-/// Global cache of mod skins to deployed parts to module icon states
-GLOBAL_LIST_EMPTY(mod_module_overlays)
 /// Global list of all ids associated to a /datum/mod_link instance
 GLOBAL_LIST_EMPTY(mod_link_ids)

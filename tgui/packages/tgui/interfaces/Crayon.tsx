@@ -1,5 +1,5 @@
 import { Button, LabeledList, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -81,7 +81,9 @@ export const Crayon = (props) => {
           </LabeledList>
         </Section>
         {!!is_literate_user && (
-          <Section title="Text">
+          <Section title="Text (доступна кириллица)">
+            {' '}
+            {/* MASSMETA EDIT (ru_crayons) */}
             <LabeledList>
               <LabeledList.Item label="Current Buffer">
                 {text_buffer}

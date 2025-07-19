@@ -23,19 +23,19 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/social_anxiety, /datum/quirk/mute),
 	list(/datum/quirk/mute, /datum/quirk/softspoken),
 	list(/datum/quirk/poor_aim, /datum/quirk/bighands),
-	list(/datum/quirk/bilingual, /datum/quirk/foreigner),
+	list(/datum/quirk/bilingual, /datum/quirk/foreigner, /datum/quirk/csl),
 	list(/datum/quirk/spacer_born, /datum/quirk/item_quirk/settler),
 	list(/datum/quirk/photophobia, /datum/quirk/nyctophobia),
 	list(/datum/quirk/item_quirk/settler, /datum/quirk/freerunning),
 	list(/datum/quirk/numb, /datum/quirk/selfaware),
-	//MASSMETA EDIT ADDITION START (augmented quirk)
+	//MASSMETA EDIT BEGIN (quirk_augmented)
 	list(/datum/quirk/augmented, /datum/quirk/quadruple_amputee),
 	list(/datum/quirk/augmented, /datum/quirk/paraplegic),
 	list(/datum/quirk/augmented, /datum/quirk/hemiplegic),
 	list(/datum/quirk/augmented, /datum/quirk/frail),
 	list(/datum/quirk/augmented, /datum/quirk/prosthetic_limb),
 	list(/datum/quirk/augmented, /datum/quirk/body_purist),
-	//MASSMETA EDIT ADDITION END
+	//MASSMETA EDIT END
 	list(/datum/quirk/empath, /datum/quirk/evil),
 ))
 
@@ -102,7 +102,7 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	for(var/quirk_name in applied_client.prefs.all_quirks)
 		var/datum/quirk/quirk_type = quirks[quirk_name]
 		if(ispath(quirk_type))
-			if(user.add_quirk(quirk_type, override_client = applied_client))
+			if(user.add_quirk(quirk_type, override_client = applied_client, announce = FALSE))
 				SSblackbox.record_feedback("tally", "quirks_taken", 1, "[quirk_name]")
 		else
 			stack_trace("Invalid quirk \"[quirk_name]\" in client [applied_client.ckey] preferences")

@@ -1,11 +1,6 @@
 #define CHALLENGE_TELECRYSTALS 280
 #define CHALLENGE_TIME_LIMIT (5 MINUTES)
 #define CHALLENGE_SHUTTLE_DELAY (25 MINUTES) // 25 minutes, so the ops have at least 5 minutes before the shuttle is callable.
-// MASSMETA EDIT ADDITION START
-#define WAR_TC_MIN 125
-#define WAR_TC_MAX 280
-#define WAR_MAX_PAYOUT 50
-// MASSMETA EDIT ADDITION END
 
 GLOBAL_LIST_EMPTY(jam_on_wardec)
 
@@ -21,18 +16,20 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			Must be used within five minutes, or your benefactors will lose interest."
 	var/declaring_war = FALSE
 	var/uplink_type = /obj/item/uplink/nuclear
+	var/announcement_sound = 'sound/announcer/alarm/nuke_alarm.ogg'
 
 /obj/item/nuclear_challenge/attack_self(mob/living/user)
 	if(!check_allowed(user))
 		return
 
 	declaring_war = TRUE
-//MASSMETA EDIT CHANGE START
-	var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]]. Are you sure you want to alert the enemy crew? You will get \
-		[round(WAR_TC_MIN + (WAR_TC_MAX - WAR_TC_MIN) * (1 - (WAR_MAX_PAYOUT - min(WAR_MAX_PAYOUT, GLOB.joined_player_list.len)) / (WAR_MAX_PAYOUT - CHALLENGE_MIN_PLAYERS)), 1)] \
-		extra telecystals. You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide", "Declare war?", list("Yes", "No"))
-//ORIGINAL: var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide.", "Declare war?", list("Yes", "No"))
-//MASSMETA EDIT CHANGE END
+	//MASSMETA EDIT BEGIN (antagonists_balance)
+	// var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide.", "Declare war?", list("Yes", "No"))
+
+	var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? \
+		You will get [GLOB.joined_player_list.len * 6] extra telecystals to fight with [GLOB.joined_player_list.len] NT fools. \
+		You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide", "Declare war?", list("Yes", "No"))
+	//MASSMETA EDIT END
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
@@ -80,7 +77,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
-		if(board.challenge)
+		if(board.challenge_start_time)
 			tgui_alert(usr, "War has already been declared!", "War Was Declared")
 			return
 
@@ -90,7 +87,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	priority_announce(
 		text = memo,
 		title = "Declaration of War",
-		sound = 'sound/announcer/alarm/nuke_alarm.ogg',
+		sound = announcement_sound,
 		has_important_message = TRUE,
 		sender_override = "Nuclear Operative Outpost",
 		color_override = "red",
@@ -104,7 +101,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	SSblackbox.record_feedback("amount", "nuclear_challenge_mode", 1)
 
 	for(var/obj/item/circuitboard/computer/syndicate_shuttle/board as anything in GLOB.syndicate_shuttle_boards)
-		board.challenge = TRUE
+		board.challenge_start_time = world.time
 
 	for(var/obj/machinery/computer/camera_advanced/shuttle_docker/dock as anything in GLOB.jam_on_wardec)
 		dock.jammed = TRUE
@@ -131,7 +128,11 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			continue
 		uplinks += uplink
 
-	var/tc_to_distribute = round(WAR_TC_MIN + (WAR_TC_MAX - WAR_TC_MIN) * (1 - (WAR_MAX_PAYOUT - min(WAR_MAX_PAYOUT, GLOB.joined_player_list.len)) / (WAR_MAX_PAYOUT - CHALLENGE_MIN_PLAYERS)), 1) //MASSMETA EDIT CHANGE - ORIGINAL: var/tc_to_distribute = CHALLENGE_TELECRYSTALS
+	//MASSMETA EDIT BEGIN (antagonists_balance)
+	//var/tc_to_distribute = CHALLENGE_TELECRYSTALS
+
+	var/tc_to_distribute = GLOB.joined_player_list.len * 6 // 25 pop = 150 TC, 50 pop = 300 TC, 100 pop = 600 fucking TC, swim in it like a Scrooge McDuck!!!
+	//MASSMETA EDIT END
 	var/tc_per_nukie = round(tc_to_distribute / (length(orphans)+length(uplinks)))
 
 	for (var/datum/component/uplink/uplink in uplinks)
@@ -169,13 +170,14 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		if(board.moved)
 			to_chat(user, span_boldwarning("The shuttle has already been moved! You have forfeit the right to declare war."))
 			return FALSE
-		if(board.challenge)
+		if(board.challenge_start_time)
 			to_chat(user, span_boldwarning("War has already been declared!"))
 			return FALSE
 	return TRUE
 
 /obj/item/nuclear_challenge/clownops
 	uplink_type = /obj/item/uplink/clownop
+	announcement_sound = 'sound/announcer/alarm/clownops.ogg'
 
 /// Subtype that does nothing but plays the war op message. Intended for debugging
 /obj/item/nuclear_challenge/literally_just_does_the_message
@@ -202,7 +204,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	priority_announce(
 		text = memo,
 		title = "Declaration of War",
-		sound = 'sound/announcer/alarm/nuke_alarm.ogg',
+		sound = announcement_sound,
 		has_important_message = TRUE,
 		sender_override = "Nuclear Operative Outpost",
 		color_override = "red",
@@ -214,8 +216,3 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 #undef CHALLENGE_TELECRYSTALS
 #undef CHALLENGE_TIME_LIMIT
 #undef CHALLENGE_SHUTTLE_DELAY
-//MASSMETA EDIT ADDITION START
-#undef WAR_TC_MIN
-#undef WAR_TC_MAX
-#undef WAR_MAX_PAYOUT
-//MASSMETA EDIT ADDITION END

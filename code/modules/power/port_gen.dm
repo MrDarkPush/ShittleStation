@@ -104,7 +104,12 @@
 
 /obj/machinery/power/port_gen/pacman/on_construction(mob/user)
 	var/obj/item/circuitboard/machine/pacman/our_board = circuit
-	if(our_board.high_production_profile && !our_board.other_type) // MASSMETA EDIT: Add checking "other_type"
+		// MASSMETA EDIT BEGIN (woodgen)
+	//if(our_board.high_production_profile)
+
+	// Add checking "other_type"
+	if(our_board.high_production_profile && !our_board.other_type)
+	// MASSMETA EDIT END
 		icon_state = "portgen1_0"
 		base_icon_state = "portgen1"
 		max_sheets = 20
@@ -175,7 +180,7 @@
 	else
 		disconnect_from_network()
 
-/obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, params)
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, list/modifiers, list/attack_modifiers)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)

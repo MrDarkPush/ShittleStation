@@ -10,8 +10,9 @@
 	var/obj/item/case_portable_recharger/portable_recharger
 
 /obj/machinery/recharger/RefreshParts()
-	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		recharge_coeff = C.rating
+	. = ..()
+	for(var/datum/stock_part/capacitor/capacitor in component_parts)
+		recharge_coeff = capacitor.tier
 
 
 /obj/machinery/recharger/portable_recharger/Initialize(mapload, portable_recharger)
@@ -158,7 +159,7 @@
 		. += "<hr><span class='notice'>[incell] charge [incell.percent()].</span>"
 
 //Типа линковка
-/obj/item/case_portable_recharger/Initialize()
+/obj/item/case_portable_recharger/Initialize(mapload)
 	link = new(null, src)
 	. = ..()
 

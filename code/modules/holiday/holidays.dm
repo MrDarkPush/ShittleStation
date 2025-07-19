@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	switch(pattern)
 		if(PATTERN_RANDOM)
 			return "#[random_short_color()]"
-		//MASSMETA EDIT REMOVAL BEGIN (gay removal)
+		//MASSMETA EDIT REMOVAL BEGIN (lgbt_removal)
 		/*
 		if(PATTERN_RAINBOW)
 			var/datum/holiday/pride_week/rainbow_datum = new()
@@ -403,6 +403,23 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 /datum/holiday/bee/getStationPrefix()
 	return pick("Bee","Honey","Hive","Africanized","Mead","Buzz")
 
+/datum/holiday/goth
+	name = "Goth Day"
+	begin_day = 22
+	begin_month = MAY
+	holiday_mail = list(
+		/obj/item/lipstick,
+		/obj/item/lipstick/black,
+		/obj/item/clothing/suit/costume/gothcoat,
+	)
+	holiday_colors = list(
+		COLOR_WHITE,
+		COLOR_BLACK,
+	)
+
+/datum/holiday/goth/getStationPrefix()
+	return pick("Goth", "Sanguine", "Tenebris", "Lacrimosa", "Umbra", "Noctis")
+
 // JUNE
 
 //The Festival of Atrakor's Might (Tizira's Moon) is celebrated on June 15th, the date on which the lizard visual revamp was merged (#9808)
@@ -437,8 +454,6 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 	begin_month = JUNE
 	holiday_hat = /obj/item/clothing/head/costume/garland
 
-//MASSMETA EDIT REMOVAL BEGIN (gay removal)
-/*
 /datum/holiday/pride_week
 	name = PRIDE_WEEK
 	begin_month = JUNE
@@ -453,8 +468,20 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 		COLOR_PRIDE_ORANGE,
 		COLOR_PRIDE_RED,
 	)
-*/
-//MASSMETA EDIT REMOVAL END
+	holiday_mail = list(
+		/obj/item/bedsheet/rainbow,
+		/obj/item/clothing/accessory/pride,
+		/obj/item/clothing/gloves/color/rainbow,
+		/obj/item/clothing/head/costume/garland/rainbowbunch,
+		/obj/item/clothing/head/soft/rainbow,
+		/obj/item/clothing/shoes/sneakers/rainbow,
+		/obj/item/clothing/under/color/jumpskirt/rainbow,
+		/obj/item/clothing/under/color/rainbow,
+		/obj/item/food/egg/rainbow,
+		/obj/item/food/grown/rainbow_flower,
+		/obj/item/food/snowcones/rainbow,
+		/obj/item/toy/crayon/rainbow,
+	)
 
 // JULY
 

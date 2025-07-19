@@ -280,10 +280,11 @@
 /obj/machinery/door/firedoor/proc/check_atmos(turf/checked_turf)
 	var/datum/gas_mixture/environment = checked_turf.return_air()
 	if(!environment)
-		stack_trace("We tried to check a gas_mixture that doesn't exist for its firetype, what are you DOING")
-		return
+		CRASH("We tried to check a gas_mixture that doesn't exist for its firetype, what are you DOING")
 
 	if(environment.temperature >= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+		return FIRELOCK_ALARM_TYPE_HOT
+	if(environment.gases[/datum/gas/antinoblium] && environment.gases[/datum/gas/antinoblium][MOLES] > MINIMUM_MOLE_COUNT)
 		return FIRELOCK_ALARM_TYPE_HOT
 	if(environment.temperature <= BODYTEMP_COLD_DAMAGE_LIMIT)
 		return FIRELOCK_ALARM_TYPE_COLD
@@ -297,6 +298,8 @@
 			return
 
 	var/turf/checked_turf = source
+	if(!(checked_turf.flags_1 & INITIALIZED_1)) // uninitialized turfs won't have atmos setup anyways, so check_atmos would just complain and not work
+		return
 	var/result = check_atmos(checked_turf)
 
 	if(result && TURF_SHARES(checked_turf))
@@ -328,7 +331,7 @@
 /obj/machinery/door/firedoor/proc/start_activation_process(code = FIRELOCK_ALARM_TYPE_GENERIC)
 	if(active)
 		return //We're already active
-	// soundloop.start() //MASSMETA EDIT REMOVAL
+	// soundloop.start() //MASSMETA EDIT (no_firelock_sound)
 	is_playing_alarm = TRUE
 	my_area.fault_status = AREA_FAULT_AUTOMATIC
 	my_area.fault_location = name
@@ -342,7 +345,7 @@
  * in the merge group datum. sets our alarm type to null, signifying no alarm.
  */
 /obj/machinery/door/firedoor/proc/start_deactivation_process()
-	// soundloop.stop() //MASSMETA EDIT REMOVAL
+	// soundloop.stop() //MASSMETA EDIT (no_firelock_sound)
 	is_playing_alarm = FALSE
 	my_area.fault_status = AREA_FAULT_NONE
 	my_area.fault_location = null
@@ -397,7 +400,7 @@
 	alarm_type = null
 	active = FALSE
 	remove_as_source()
-	// soundloop.stop() //MASSMETA EDIT REMOVAL
+	// soundloop.stop() //MASSMETA EDIT (no_firelock_sound)
 	is_playing_alarm = FALSE
 	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
 	correct_state()
@@ -414,7 +417,7 @@
 	if(!length(issue_turfs)) // Generic alarms get out
 		alarm_type = null
 
-	// soundloop.stop() //MASSMETA EDIT REMOVAL
+	// soundloop.stop() //MASSMETA EDIT (no_firelock_sound)
 	is_playing_alarm = FALSE
 	remove_as_source()
 	update_appearance(UPDATE_ICON) //Sets the door lights even if the door doesn't move.
@@ -473,19 +476,19 @@
 /obj/machinery/door/firedoor/proc/on_power_loss()
 	SIGNAL_HANDLER
 
-	// soundloop.stop() //MASSMETA EDIT REMOVAL
+	// soundloop.stop() //MASSMETA EDIT (no_firelock_sound)
 
 /obj/machinery/door/firedoor/proc/on_power_restore()
 	SIGNAL_HANDLER
 
 	correct_state()
 
-	// MASSMETA EDIT REMOVAL BEGIN
+	// MASSMETA EDIT BEGIN (no_firelock_sound)
 	/*
 	if(is_playing_alarm)
 		soundloop.start()
 	*/
-	// MASSMETA EDIT REMOVAL END
+	// MASSMETA EDIT END
 
 
 /obj/machinery/door/firedoor/attack_hand(mob/living/user, list/modifiers)

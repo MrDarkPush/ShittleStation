@@ -29,6 +29,10 @@
 		"dropper",
 		"pillbottle",
 		"xlarge_beaker",
+		"organ_jar",
+		"jerrycan",
+		"reflex_hammer",
+		"blood_scanner",
 	)
 	experiments_to_unlock = list(
 		/datum/experiment/autopsy/human,
@@ -77,8 +81,10 @@
 		"defibmount",
 		"medicalbed_emergency",
 		"piercesyringe",
-		"autodoc", // MASSMETA EDIT: Add autodoc
-		"organdoc", // MASSMETA EDIT: Add organdoc
+		// MASSMETA EDIT BEGIN (not_enough_medical)
+		"autodoc",
+		"organdoc",
+		// MASSMETA EDIT END
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/reagent/haloperidol)

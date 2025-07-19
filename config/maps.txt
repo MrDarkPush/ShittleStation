@@ -11,38 +11,47 @@ Format:
 	voteweight [number] (How much to count each player vote as, defaults to 1, setting to 0.5 counts each vote as half a vote, 2 as double, etc, Setting to 0 disables the map but allows players to still pick it)
 	disabled (disables the map)
 	votable (is this map votable)
+	feedbacklink (link in-game shown to players to leave feedback for the map)
+	webmap_url (link to the a webmap to see the map in the user's browser)
 endmap
 
 # Production-level maps.
 
 map birdshot
-	maxplayers 66
+	minplayers 30
 	votable
 endmap
 
 map deltastation
-	minplayers 50
+	minplayers 20
 	votable
 endmap
 
 map icebox
+	minplayers 20
+	votable
+endmap
+
+map catwalkstation
 	minplayers 25
 	votable
 endmap
 
 map metastation
-	minplayers 25
+	minplayers 5
 	#voteweight 0.5
 	votable
+	#feedbacklink https://www.youtube.com/watch?v=XG8b7WhANNA
+	#webmap_url https://webmap.affectedarc07.co.uk/maps/tgstation/metastation
 endmap
 
 map tramstation
-	minplayers 35
+	minplayers 25
 	votable
 endmap
 
 map nebulastation
-	minplayers 35
+	minplayers 25
 	votable
 endmap
 
@@ -51,20 +60,32 @@ map pubbystation
 endmap
 
 map kilostation
-	maxplayers 35
+	maxplayers 15
 	votable
 
 map wawastation
 	votable
-	minplayers 40
+	minplayers 20
 endmap
 
 map protoboxstation
 	votable
 endmap
 
-map hotmeta
+map bearcat
+	maxplayers 3
 	votable
+endmap
+
+# Только через админ кнопки
+map stroika
+endmap
+
+map protosstation
+	minplayers 0
+	maxplayers 25
+	votable
+
 endmap
 
 # Debug-only maps.

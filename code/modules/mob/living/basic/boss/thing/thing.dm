@@ -54,7 +54,6 @@
 		/datum/action/cooldown/mob_cooldown/the_thing/acid_spit = BB_THETHING_ACIDSPIT,
 	)
 	grant_actions_by_list(innate_actions)
-	AddComponent(/datum/component/basic_mob_attack_telegraph, telegraph_duration = 0.4 SECONDS)
 	AddElement(/datum/element/relay_attackers) // used to immediately aggro if shot from outside aggro range
 	RegisterSignal(src, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(immediate_aggro))
 	maploaded = mapload
@@ -185,8 +184,9 @@
 	return ..()
 
 /mob/living/basic/boss/thing/with_ruin_loot
-	loot = list(/obj/item/organ/brain/cybernetic/ai) // the only, relevant main loot of the ruin, but if admin spawned the keycard is useless
-	crusher_loot = list(/obj/item/organ/brain/cybernetic/ai, /obj/item/crusher_trophy/flesh_glob)
+	// MASSMETA EDIT: Заменяем кибермозг копировальной машиной
+	loot = list(/obj/item/circuitboard/machine/copytech, /obj/item/circuitboard/machine/copytech_platform) // the only, relevant main loot of the ruin, but if admin spawned the keycard is useless
+	crusher_loot = list(/obj/item/circuitboard/machine/copytech, /obj/item/circuitboard/machine/copytech_platform, /obj/item/crusher_trophy/flesh_glob)
 
 // special stuff for our ruin to make a cooler bossfight
 

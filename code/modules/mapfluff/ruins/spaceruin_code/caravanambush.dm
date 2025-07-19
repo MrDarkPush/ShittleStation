@@ -8,13 +8,18 @@
 	toolspeed = 0.3
 
 /obj/item/screwdriver/caravan
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_caravan"
+	post_init_icon_state = null
 	desc = "A prototype of a new screwdriver design, allegedly the red color scheme makes it go faster."
 	name = "experimental screwdriver"
 	toolspeed = 0.3
 	random_color = FALSE
+	greyscale_config = null
+	greyscale_colors = null
 
 /obj/item/wirecutters/caravan
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_caravan"
 	desc = "A prototype of a new wirecutter design, allegedly the red color scheme makes it go faster."
 	name = "experimental wirecutters"
@@ -107,7 +112,7 @@
 	req_access = list(ACCESS_SYNDICATE)
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate1
 	shuttleId = "caravansyndicate1"
-	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost"
+	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost;syndie_cargo"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate1
 	name = "Syndicate Fighter Navigation Computer"
@@ -131,7 +136,7 @@
 	light_color = COLOR_SOFT_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate2
 	shuttleId = "caravansyndicate2"
-	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;caravansyndicate1_listeningpost"
+	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;caravansyndicate1_listeningpost;syndie_cargo"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate2
 	name = "Syndicate Fighter Navigation Computer"
@@ -155,7 +160,7 @@
 	light_color = COLOR_SOFT_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate3
 	shuttleId = "caravansyndicate3"
-	possible_destinations = "caravansyndicate3_custom;caravansyndicate3_ambush;caravansyndicate3_listeningpost"
+	possible_destinations = "caravansyndicate3_custom;caravansyndicate3_ambush;caravansyndicate3_listeningpost;syndie_cargo"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate3
 	name = "Syndicate Drop Ship Navigation Computer"
