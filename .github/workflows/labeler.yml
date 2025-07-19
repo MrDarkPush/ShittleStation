@@ -21,5 +21,3 @@ jobs:
       - name: PR labele
         id: pr_labeler
         uses: actions/labeler@v5
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
