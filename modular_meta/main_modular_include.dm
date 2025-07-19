@@ -44,6 +44,7 @@
 #include "features\telescience\includes.dm"
 #include "features\send2status\include.dm"
 #include "features\deathmatch\includes.dm"
+#include "features\countdown_antimov_sfx\includes.dm"
 /* -- REVERTS -- */
 
 #include "reverts\re_beheading\includes.dm"
