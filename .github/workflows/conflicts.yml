@@ -1,4 +1,4 @@
-name: "Wheres conflicts"
+name: "Search for Conflicts"
 on:
   push:
   pull_request_target:
