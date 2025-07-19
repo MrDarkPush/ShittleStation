@@ -24,7 +24,7 @@
 "Изменения Карт":
   - changed-files:
       - any-glob-to-any-file: ["**/*.dmm"]
-"Модулярная фишка"
+"Модулярная фишка":
   - changed-files:
       - any-glob-to-any-file: ["modular_meta/**"]
 "Спрайты":
