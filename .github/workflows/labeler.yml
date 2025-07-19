@@ -12,13 +12,13 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - name: Global labeler # glob_labeler
+      - name: Global labeler 
         id: glob_labeler
         uses: jimschubert/labeler-action@v2
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: PR labeler # pr_labeler
+      - name: PR labele
         id: pr_labeler
         uses: actions/labeler@v5
         with:
