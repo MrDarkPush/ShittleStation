@@ -35,10 +35,12 @@
 /obj/item/knife/poison/afterattack(mob/living/enemy, mob/user)
 	location = get_turf(src)
 	if(istype(enemy)) // Вызывает рантаймы, если удар пришёлся не на моба, а на какой-то другой объект.
-		if(enemy.can_inject() && prob(65)) // Проверяет на хардсуиты, модсуиты или еву, я бы ещё сделал чтобы он блокировался сековской бронёй, но увы такими знаниями не обладаю.
+		if(!enemy.can_inject()) // Проверяет на хардсуиты, модсуиты или еву, я бы ещё сделал чтобы он блокировался сековской бронёй, но увы такими знаниями не обладаю.
+			to_chat(usr, span_warning("[src] bounces off [enemy]'s armor unable to inject any poison!"))
+			return
+		else if(prob(65))
+			playsound(src, 'sound/items/hypospray.ogg', 100, TRUE)
 			reagents.trans_to(enemy, amount_per_transfer_from_this)
-		else
-			to_chat(usr, span_warning("[enemy]'s armor is too thick to penetrate."))
 		if(reagents.has_reagent(/datum/reagent/toxin/initropidril))
 			to_chat(usr, span_warning("The knife violently explodes in your hand!"))
 			user.visible_message(span_warning("[user]'s knife violently explodes in their hand!"), ignored_mobs = user)
