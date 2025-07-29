@@ -132,11 +132,14 @@
 		objective_count++
 
 	var/objective_limit = CONFIG_GET(number/traitor_objectives_amount)
-
+	var/datum/objective/job_objective = forge_job_objective()
 	// for(in...to) loops iterate inclusively, so to reach objective_limit we need to loop to objective_limit - 1
 	// This does not give them 1 fewer objectives than intended.
 	for(var/i in objective_count to objective_limit - 1)
-		objectives += forge_single_generic_objective()
+		var/generated = forge_single_generic_objective(job_objective)
+		if(generated == job_objective)
+			job_objective = null
+		objectives += generated
 
 /**
  * ## forge_ending_objective
@@ -194,6 +197,11 @@
 	steal_objective.owner = owner
 	steal_objective.find_target()
 	return steal_objective
+
+/datum/antagonist/traitor/proc/forge_job_objective()
+	var/datum/objective/job_objective = owner.assigned_role.generate_traitor_objective() // can return null
+	job_objective?.owner = owner
+	return job_objective
 
 /datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
 	. = ..()
