@@ -52,6 +52,8 @@
 #include "reverts\re_glasses_protect_welding\includes.dm"
 #include "reverts\re_hooch_heals_assistants\includes.dm"
 #include "reverts\re_satchels_num_back\includes.dm"
+#include "reverts\re_bulky_extinguishers\includes.dm"
+#include "reverts\re_wallmed\includes.dm"
 
 /* --TRANSLATIONS-- */
 
