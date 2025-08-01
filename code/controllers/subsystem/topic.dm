@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(topic)
 	return ..()
 
 /datum/config_entry/number/topic_max_size
-	config_entry_value = 5000
+	default = 5000
 	protection = CONFIG_ENTRY_HIDDEN|CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/keyed_list/topic_tokens
