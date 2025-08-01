@@ -1,4 +1,4 @@
-## MassMeta (/tg/station Downstream)
+## SittleStation (/tg/station Downstream)
 
 [![Build Status](https://github.com/Lambda-13/massmeta/workflows/CI%20Suite/badge.svg)](https://github.com/Huz2e/massmeta/actions?query=workflow%3A%22CI+Suite%22)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Lambda-13/massmeta.svg)](http://isitmaintained.com/project/Lambda-13/massmeta "Percentage of issues still open")
@@ -31,7 +31,7 @@ This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
 **_RUSSIAN TEXT ALERT_**
 
-**Этот репозиторий основан на квасе, мммммнн Квас.**
+**Этот репозиторий основан на ~~форке форка~~ квасе, мммммнн Квас.**
 
 Космическая Станция 13 - это насыщенная паранойей ролевая игра, действие которой разворачивается на фоне бессмысленной металлической ловушки смерти, маскирующейся под космическую станцию, с очаровательными спрайтами, созданными для представления научно-фантастического сеттинга и его опасных оттенков. Получайте удовольствие и выживайте!
 
