@@ -68,6 +68,12 @@
 	integer = FALSE
 	min_val = 0.01
 
+/// Determines how many potential objectives a traitor can have.
+//MASSMETA ADDDITION START (re_traitorsecondary)
+/datum/config_entry/number/maximum_potential_objectives
+	default = 6
+	min_val = 1
+//MASSMETA ADDDITION END (re_traitorsecondary)
 /datum/config_entry/number/changeling_scaling_coeff //how much does the amount of players get divided by to determine changelings
 	default = 6
 	integer = FALSE
