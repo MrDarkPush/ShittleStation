@@ -26,6 +26,12 @@
 	var/should_give_codewords = TRUE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
+	//MASSMETA ADDITION START (re_traitorsecondary)
+	/// Code that allows traitor to get a replacement uplink
+	var/replacement_uplink_code = ""
+	/// Radio frequency that traitor must speak on to get a replacement uplink
+	var/replacement_uplink_frequency = ""
+	//MASSMETA ADDITION END (re_traitorsecondary)
 	///if TRUE, this traitor will always get hijacking as their final objective
 	var/is_hijacker = FALSE
 
@@ -54,7 +60,9 @@
 /datum/antagonist/traitor/on_gain()
 	if(give_uplink)
 		owner.give_uplink(silent = TRUE, antag_datum = src)
-
+	//MASSMETA ADDITION START (re_traitorsecondary)
+	generate_replacement_codes()
+	//MASSMETA ADDITION END (re_traitorsecondary)
 	var/datum/component/uplink/uplink = owner.find_syndicate_uplink()
 	uplink_ref = WEAKREF(uplink)
 	if(uplink)
@@ -89,7 +97,9 @@
 		forge_ending_objective()
 
 	pick_employer()
-
+	//MASSMETA ADDITION START (re_traitorsecondary)
+	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
+	//MASSMETA ADDITION END (re_traitorsecondary)
 	return ..()
 
 /datum/antagonist/traitor/on_removal()
@@ -97,11 +107,28 @@
 		uplink_handler.can_replace_objectives = null
 		uplink_handler.replace_objectives = null
 	owner.take_uplink()
+	/*MASSMETA EDIT START (re_traitorsecondary) ORIGINAL:
+	/datum/antagonist/traitor/on_removal()
+	if(!isnull(uplink_handler))
+		uplink_handler.can_replace_objectives = null
+		uplink_handler.replace_objectives = null
+	owner.take_uplink()
+	*/
+	//owner.special_role = null
+	owner.forget_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
 	return ..()
+	//MASSMET EDIT END (re_traitorsecondary)
 
 /// Returns true if we're allowed to assign ourselves a new objective
 /datum/antagonist/traitor/proc/can_change_objectives()
 	return can_assign_self_objectives
+// // MASSMETA ADDITION START (re_traitorsecondary)
+/// proc that generates the traitors replacement uplink code and radio frequency
+/datum/antagonist/traitor/proc/generate_replacement_codes()
+	replacement_uplink_code = "[pick(GLOB.phonetic_alphabet)] [rand(10,99)]"
+	replacement_uplink_frequency = sanitize_frequency(rand(MIN_UNUSED_FREQ, MAX_FREQ), free = FALSE, syndie = FALSE)
+
+// MASSMETA ADDITION END (re_traitorsecondary)
 
 /datum/antagonist/traitor/proc/pick_employer()
 	if(!employer)
@@ -235,6 +262,10 @@
 	data["theme"] = traitor_flavor["ui_theme"]
 	data["code"] = uplink?.unlock_code
 	data["failsafe_code"] = uplink?.failsafe_code
+	// MASSMETA ADDITION START (re_traitorsecondary)
+	data["replacement_code"] = replacement_uplink_code
+	data["replacement_frequency"] = format_frequency(replacement_uplink_frequency)
+	// MASSMETA ADDITION END (re_traitorsecondary)
 	data["intro"] = traitor_flavor["introduction"]
 	data["allies"] = traitor_flavor["allies"]
 	data["goal"] = traitor_flavor["goal"]

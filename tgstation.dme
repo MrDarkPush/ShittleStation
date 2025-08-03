@@ -6680,4 +6680,5 @@
 #include "interface\fonts\vcr_osd_mono.dm"
 #include "massmeta\modular_meta_features.dm"
 #include "modular_meta\main_modular_include.dm"
+#include "code\game\objects\structures\syndicate_uplink_beacon.dm"
 // END_INCLUDE
