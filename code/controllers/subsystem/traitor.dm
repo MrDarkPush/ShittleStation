@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(traitor)
 	/// File to load configurations from.
 	//MASSMETA ADDDITION START (re_traitorsecondary)
 	var/configuration_path = "config/traitor_objective.json"
+	var/progression_scaling_deviance = 20 MINUTES
 	/// Global configuration data that gets applied to each objective when it is created.
 	/// Basic objective format
 	/// '/datum/traitor_objective/path/to/objective': {
@@ -72,7 +73,7 @@ SUBSYSTEM_DEF(traitor)
 	var/previous_progression = current_global_progression
 	current_global_progression = (STATION_TIME_PASSED()) * CONFIG_GET(number/traitor_scaling_multiplier)
 	var/progression_increment = current_global_progression - previous_progression
-
+	var/progression_scaling_delta = (wait / (1 MINUTES)) * current_progression_scaling
 	for(var/datum/uplink_handler/handler in uplink_handlers)
 		if(!handler.has_progression || QDELETED(handler))
 			uplink_handlers -= handler
@@ -82,11 +83,12 @@ SUBSYSTEM_DEF(traitor)
 			handler.progression_points = current_global_progression
 		else
 //MASSMETA EDIT START (re_traitorsecondary) ORIGINAL: handler.progression_points += progression_increment // Should only really happen if an admin is messing with an individual's progression value
+
 			var/amount_to_give = progression_scaling_delta + (progression_scaling_delta * deviance)
 			amount_to_give = clamp(amount_to_give, 0, progression_scaling_delta * 2)
 			handler.progression_points += amount_to_give
-		handler.update_objectives()
-		handler.on_update()
+			handler.update_objectives()
+			handler.on_update()
 //MASSMETA EDIT START (re_traitorsecondary)
 /datum/controller/subsystem/traitor/proc/register_uplink_handler(datum/uplink_handler/uplink_handler)
 	if(!uplink_handler.has_progression)
