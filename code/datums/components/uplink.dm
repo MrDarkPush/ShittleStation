@@ -192,6 +192,9 @@
 	data["joined_population"] = length(GLOB.joined_player_list)
 	data["maximum_potential_objectives"] = uplink_handler.maximum_potential_objectives
 	data["progression_scaling_deviance"] = SStraitor.progression_scaling_deviance
+	data["current_expected_progression"] = SStraitor.current_global_progression
+	data["progression_scaling_deviance"] = SStraitor.progression_scaling_deviance
+	data["current_progression_scaling"] = SStraitor.current_progression_scaling
 
 	if(uplink_handler.primary_objectives)
 		var/list/primary_objectives = list()
