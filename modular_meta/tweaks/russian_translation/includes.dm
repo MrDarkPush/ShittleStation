@@ -12,7 +12,7 @@
 /datum/modpack/russian_translation
 	id = "russian_translation"
 	icon = 'modular_meta/tweaks/russification/preview.dmi'
-	name = "Русификация"
+	name = "Русский перевод"
 	group = "Tweaks"
-	desc = "Русифицирование аспектов игры, предметов, спрайтов и тому далее."
+	desc = "Перевод аспектов игры, предметов, спрайтов на русский язык."
 	author = "Artemchik542, Pik1ta"
