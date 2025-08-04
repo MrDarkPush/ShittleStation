@@ -9,8 +9,8 @@
 #include "ru_pets_commands\code\creatures_commands.dm"
 #include "ru_vendors\code\vending.dm"
 
-/datum/modpack/russification
-	id = "russification"
+/datum/modpack/russian_translation
+	id = "russian_translation"
 	icon = 'modular_meta/tweaks/russification/preview.dmi'
 	name = "Русификация"
 	group = "Tweaks"

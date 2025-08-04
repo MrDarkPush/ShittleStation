@@ -55,7 +55,7 @@
 #include "tweaks\del_required_experiments\includes.dm"
 #include "tweaks\fonts\includes.dm"
 #include "tweaks\resprite\includes.dm"
-#include "tweaks\russification\includes.dm"
+#include "tweaks\russian_translation\includes.dm"
 #include "tweaks\gases\includes.dm"
 #include "tweaks\lead_pipe\includes.dm"
 #include "tweaks\lgbt_removal\includes.dm"
