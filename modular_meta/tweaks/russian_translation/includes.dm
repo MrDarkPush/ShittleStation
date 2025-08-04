@@ -11,7 +11,7 @@
 
 /datum/modpack/russian_translation
 	id = "russian_translation"
-	icon = 'modular_meta/tweaks/russification/preview.dmi'
+	icon = 'modular_meta/tweaks/russian_translation/preview.dmi'
 	name = "Русский перевод"
 	group = "Tweaks"
 	desc = "Перевод аспектов игры, предметов, спрайтов на русский язык."
