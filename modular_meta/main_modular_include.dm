@@ -17,6 +17,7 @@
 #include "features\more_clothes\includes.dm"
 #include "features\hardsuits\includes.dm"
 #include "features\kvass_beverage\includes.dm"
+#include "features\kumiss_beverage\includes.dm"
 #include "features\oguzok_cook\includes.dm"
 #include "features\quirk_augmented\includes.dm"
 #include "features\meta_maps\includes.dme"
