@@ -32414,8 +32414,7 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "cga" = (
-/obj/machinery/power/smes{
-	capacity = 9e+006;
+/obj/machinery/power/smes/full{
 	charge = 10000
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -40111,7 +40110,7 @@
 /turf/open/floor/wood,
 /area/station/commons/dorms)
 "eJx" = (
-/obj/machinery/power/smes{
+/obj/machinery/power/full{
 	charge = 5e+006
 	},
 /obj/structure/cable,
