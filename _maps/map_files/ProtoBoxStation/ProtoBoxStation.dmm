@@ -32414,7 +32414,8 @@
 /turf/open/floor/iron,
 /area/station/maintenance/disposal/incinerator)
 "cga" = (
-/obj/machinery/power/smes/full{
+/obj/machinery/power/smes{
+	capacity = 9e+006;
 	charge = 10000
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
