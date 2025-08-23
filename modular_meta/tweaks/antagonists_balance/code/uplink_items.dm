@@ -53,3 +53,7 @@
 
 /datum/uplink_item/stealthy_tools/blackout
 	progression_minimum = 0 MINUTES
+
+// kits
+/datum/uplink_item/bundles_tc/contract_kit
+	population_minimum = 5
